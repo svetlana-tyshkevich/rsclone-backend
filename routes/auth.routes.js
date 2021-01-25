@@ -1,4 +1,6 @@
 const {Router} = require('express');
+const passport = require('passport');
+require('../passport');
 const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
@@ -93,5 +95,46 @@ router.post(
           .json({ message: 'Что-то пошло не так, попробуйте ещё раз' });
     }
 })
+
+
+router.get(
+  '/github',
+  passport.authenticate('github', { scope: ['user:email'] }),
+);
+
+router.get(
+  '/github/callback',
+  passport.authenticate('github'),
+  async (req, res) => {
+
+      try {
+         const {username} = req.user;
+
+         const user = await User.findOne({ username });
+
+         if (!user) {
+           const user = new User({ username });
+
+            await user.save();
+
+             return res.status(201).json({message: 'Пользователь создан'});
+        }
+        const token = jwt.sign(
+            { userId: user.id },
+            config.get('jwtSecret'),
+            { expiresIn: '1h' }
+        );
+
+        res.json({ token, userId: user.id, message: `Здравствуй, ${username}!` })
+
+         res.redirect('http://localhost:3000/main');
+         
+      } catch (e) {
+        res
+          .status(500)
+          .json({ message: 'Что-то пошло не так, попробуйте ещё раз' });
+      }
+  },
+);
 
 module.exports = router;
