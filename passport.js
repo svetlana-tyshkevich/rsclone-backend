@@ -16,13 +16,11 @@ passport.use(
     {
       clientID: '8d1ad0a3c0b5024db563',
       clientSecret: '38cf6134c3ca3c19e7461a7a8cdbb0f2777cd5c0',
+      scope: ['user:email'],
       callbackURL: 'http://localhost:5000/api/auth/github/callback',
     },
     function (accessToken, refreshToken, profile, done) {
-    //   User.findOrCreate({ githubId: profile.id }, function (err, user) {
-        // return done(err, user);
-    //   });
-    return done(null, profile);
+      return done(null, profile);
     },
   ),
 );

@@ -1,7 +1,6 @@
 const express = require('express');
 const config = require('config');
 const mongoose = require('mongoose');
-// const cookieSession = require('cookie-session');
 const passport = require('passport');
 require('./passport');
 
@@ -13,10 +12,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/api/auth', require('./routes/auth.routes'));
+app.use('/api/lessons', require('./routes/lessons.routes'));
 
-
-// const PORT = process.env.PORT || 5000;
-const PORT =  5000;
+const PORT = process.env.PORT || 5000;
+// const PORT =  5000;
 
 
 
@@ -27,6 +26,7 @@ async function start() {
             useUnifiedTopology: true,
             useCreateIndex: true
         })
+        const db = mongoose.connection;
         app.listen(PORT, () => console.log(`App has been started on port ${PORT}`));
     } catch (e) {
         console.log('Server Error', e.message);
