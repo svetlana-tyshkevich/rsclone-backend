@@ -6,9 +6,8 @@ const router = Router();
 
 // const content = new Content({
 //   appLang: 'english',
-//   learnLang: 'japanise',
-//   content: {
-//   },
+//   learnLang: 'french',
+//   content: {},
 // });
 
 // content.save();
@@ -18,8 +17,8 @@ router.get(
 
   async (req, res) => {
     try {
-      const { appLang, lang } = req.body;
-      const lessons = await Content.findOne({ appLang, lang });
+      const { appLang, learnLang } = req.body;
+      const lessons = await Content.findOne({ appLang, learnLang });
 
       res.json({ content: lessons.content});
     } catch (e) {
