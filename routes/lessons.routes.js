@@ -17,7 +17,7 @@ router.get(
 
   async (req, res) => {
     try {
-      const { appLang, learnLang } = req.body;
+      const { appLang, learnLang } = req.query;
       const lessons = await Content.findOne({ appLang, learnLang });
 
       res.json({ content: lessons.content});
