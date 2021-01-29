@@ -1,8 +1,8 @@
 const { Schema, model, Types } = require('mongoose');
 
 const contentSchema = new Schema({
-  lang: String,
   appLang: String,
+  learnLang: String,
   content: { type: Object, required: true},
 });
 
