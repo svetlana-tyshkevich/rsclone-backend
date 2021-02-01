@@ -7,12 +7,19 @@ const router = Router();
 // rating
 router.get(
   '/rating',
-
   async (req, res) => {
     try {
       const rating = await User.find();
 
-      res.send({ rating: rating.sort((a,b) => (a.points - b.points)).slice(0,5) });
+      res.send({
+        rating: rating
+          .sort(
+            (a, b) =>
+              b.results.english.langPoints - a.results.english.langPoints,
+          )
+          .slice(0, 5)
+          .filter((item) => item.results.english.langPoints > 0),
+      });
     } catch (e) {
       res
         .status(500)
