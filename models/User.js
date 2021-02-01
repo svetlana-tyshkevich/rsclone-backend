@@ -44,7 +44,7 @@ const schema = new Schema({
       level1: {
         lesson1: { type: Number, default: 0 },
         lesson2: { type: Number, default: 0 },
-        lesson3: { type: Number, default: 0 },,
+        lesson3: { type: Number, default: 0 },
         lesson4: { type: Number, default: 0 },
       },
       level2: {
@@ -59,7 +59,7 @@ const schema = new Schema({
       currentLevel: { type: Number, default: 1 },
       level1: {
         lesson1: { type: Number, default: 0 },
-        lesson2: { type: Number, default: 0 },,
+        lesson2: { type: Number, default: 0 },
         lesson3: { type: Number, default: 0 },
         lesson4: { type: Number, default: 0 },
       },
