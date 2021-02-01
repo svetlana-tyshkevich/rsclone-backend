@@ -50,4 +50,23 @@ router.put(
   },
 );
 
+// updating points
+router.get(
+  '/getPoints',
+
+  async (req, res) => {
+    try {
+      const { userId, appLang, learningLang } = req.body;
+
+      const currentUser = (await (User.find({ _id: userId })));
+      const lessonPoints = currentUser[0].results[appLang][learningLang];
+      res.send(lessonPoints);
+    } catch (e) {
+      res
+        .status(500)
+        .json({ message: "Что-то пошло не так" });
+    }
+  },
+);
+
 module.exports = router;
