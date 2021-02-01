@@ -20,7 +20,7 @@ router.get(
       const { appLang, learnLang } = req.query;
       const lessons = await Content.findOne({ appLang, learnLang });
 
-      res.json({ content: lessons.content});
+      res.send({ content: lessons.content});
     } catch (e) {
       res
         .status(500)

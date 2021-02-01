@@ -13,6 +13,7 @@ app.use(passport.session());
 
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/lessons', require('./routes/lessons.routes'));
+app.use('/api/stats', require('./routes/stats.routes'));
 
 const PORT = process.env.PORT || 5000;
 // const PORT =  5000;

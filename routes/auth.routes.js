@@ -101,44 +101,41 @@ router.post(
 );
 
 // /api/auth/github
-// router.get(
-//   '/github',
-//   passport.authenticate('github', { scope: ['user:email'] }),
-// );
+router.get(
+  '/github',
+  passport.authenticate('github', { scope: ['user:email'] }),
+);
 
 // /api/auth/github/callback
-// router.get(
-//   '/github/callback',
-//   passport.authenticate('github'),
-//   async (req, res) => {
-//       try {
-//          const email= req.user.emails[0].value;
+router.get(
+  '/github/callback',
+  passport.authenticate('github'),
+  async (req, res) => {
+    try {
+      const email = req.user.emails[0].value;
 
-//          const user = await User.findOne({ email });
+      const user = await User.findOne({ email });
 
-//          if (!user) {
-//            const user = new User({ email });
+      if (!user) {
+        const user = new User({ email });
 
-//             await user.save();
+        await user.save();
 
-//              return res.status(201).json({message: 'Пользователь создан'});
-//         }
-//         const token = jwt.sign(
-//             { userId: user.id },
-//             config.get('jwtSecret'),
-//             { expiresIn: '1h' }
-//         );
+        return res.status(201).json({ message: 'Пользователь создан' });
+      }
+      const token = jwt.sign({ userId: user.id }, config.get('jwtSecret'), {
+        expiresIn: '1h',
+      });
 
-//         res.json({ token, userId: user.id, message: `Здравствуй!` })
+      res.json({ token, userId: user.id, message: `Здравствуй!` });
 
-//         //  res.redirect('http://localhost:3000/main');
-
-//       } catch (e) {
-//         res
-//           .status(500)
-//           .json({ message: 'Что-то пошло не так, попробуйте ещё раз' });
-//       }
-//   },
-// );
+      //  res.redirect('http://localhost:3000/main');
+    } catch (e) {
+      res
+        .status(500)
+        .json({ message: 'Что-то пошло не так, попробуйте ещё раз' });
+    }
+  },
+);
 
 module.exports = router;
