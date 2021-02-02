@@ -8,6 +8,7 @@ const schema = new Schema({
       english: {
         langPoints: { type: Number, default: 0 },
         currentLevel: { type: Number, default: 1 },
+        weekProgress: { type: Array, default: [0, 0, 0, 0, 0, 0, 0] },
         level1: {
           lesson1: { type: Number, default: 0 },
           lesson2: { type: Number, default: 0 },
@@ -42,6 +43,7 @@ const schema = new Schema({
       japanese: {
         langPoints: { type: Number, default: 0 },
         currentLevel: { type: Number, default: 1 },
+        weekProgress: { type: Array, default: [0, 0, 0, 0, 0, 0, 0] },
         level1: {
           lesson1: { type: Number, default: 0 },
           lesson2: { type: Number, default: 0 },
@@ -58,6 +60,7 @@ const schema = new Schema({
       french: {
         langPoints: { type: Number, default: 0 },
         currentLevel: { type: Number, default: 1 },
+        weekProgress: { type: Array, default: [0, 0, 0, 0, 0, 0, 0] },
         level1: {
           lesson1: { type: Number, default: 0 },
           lesson2: { type: Number, default: 0 },
@@ -76,6 +79,7 @@ const schema = new Schema({
       japanese: {
         langPoints: { type: Number, default: 0 },
         currentLevel: { type: Number, default: 1 },
+        weekProgress: { type: Array, default: [0, 0, 0, 0, 0, 0, 0] },
         level1: {
           lesson1: { type: Number, default: 0 },
           lesson2: { type: Number, default: 0 },
@@ -92,6 +96,7 @@ const schema = new Schema({
       french: {
         langPoints: { type: Number, default: 0 },
         currentLevel: { type: Number, default: 1 },
+        weekProgress: { type: Array, default: [0, 0, 0, 0, 0, 0, 0] },
         level1: {
           lesson1: { type: Number, default: 0 },
           lesson2: { type: Number, default: 0 },
@@ -108,6 +113,7 @@ const schema = new Schema({
       russian: {
         langPoints: { type: Number, default: 0 },
         currentLevel: { type: Number, default: 1 },
+        weekProgress: { type: Array, default: [0, 0, 0, 0, 0, 0, 0] },
         level1: {
           lesson1: { type: Number, default: 0 },
           lesson2: { type: Number, default: 0 },
@@ -126,6 +132,7 @@ const schema = new Schema({
       english: {
         langPoints: { type: Number, default: 0 },
         currentLevel: { type: Number, default: 1 },
+        weekProgress: { type: Array, default: [0, 0, 0, 0, 0, 0, 0] },
         level1: {
           lesson1: { type: Number, default: 0 },
           lesson2: { type: Number, default: 0 },
@@ -160,6 +167,7 @@ const schema = new Schema({
       japanese: {
         langPoints: { type: Number, default: 0 },
         currentLevel: { type: Number, default: 1 },
+        weekProgress: { type: Array, default: [0, 0, 0, 0, 0, 0, 0] },
         level1: {
           lesson1: { type: Number, default: 0 },
           lesson2: { type: Number, default: 0 },
@@ -176,6 +184,7 @@ const schema = new Schema({
       french: {
         langPoints: { type: Number, default: 0 },
         currentLevel: { type: Number, default: 1 },
+        weekProgress: { type: Array, default: [0, 0, 0, 0, 0, 0, 0] },
         level1: {
           lesson1: { type: Number, default: 0 },
           lesson2: { type: Number, default: 0 },
