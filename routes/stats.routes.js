@@ -59,7 +59,7 @@ router.put(
 );
 
 // updating points
-router.get(
+router.post(
   '/getPoints',
 
   async (req, res) => {
