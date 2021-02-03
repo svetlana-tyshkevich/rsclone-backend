@@ -7,7 +7,7 @@ const router = Router();
 // rating
 router.post('/rating', async (req, res) => {
   try {
-    const { appLang, learningLang } = req.body;
+    const {  appLang, learningLang } = req.body;
     const rating = await User.find();
     res.send({
       rating: rating
@@ -18,7 +18,10 @@ router.post('/rating', async (req, res) => {
         )
         .slice(0, 5)
         .filter((item) => item.results[appLang][learningLang].langPoints > 0)
-        .map((item) => [item.email, item[appLang][learningLang].langPoints]),
+        .map((item) => [
+          item.email,
+          item.results[appLang][learningLang].langPoints,
+        ]),
     });
   } catch (e) {
     res
