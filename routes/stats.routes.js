@@ -7,7 +7,7 @@ const router = Router();
 // rating
 router.post('/rating', async (req, res) => {
   try {
-    const {  appLang, learningLang } = req.body;
+    const { appLang, learningLang } = req.body;
     const rating = await User.find();
     res.send({
       rating: rating
