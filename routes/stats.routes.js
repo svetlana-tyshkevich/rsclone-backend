@@ -61,7 +61,7 @@ router.put(
   },
 );
 
-// updating points
+// getting points
 router.post(
   '/getPoints',
 
@@ -72,6 +72,22 @@ router.post(
       const currentUser = await User.find({ _id: userId });
       const lessonPoints = currentUser[0].results[appLang][learningLang];
       res.send(lessonPoints);
+    } catch (e) {
+      res.status(500).json({ message: 'Что-то пошло не так' });
+    }
+  },
+);
+
+// updating total score
+router.put(
+  '/updateScore',
+
+  async (req, res) => {
+    try {
+      const { userId,  appLang, learningLang, score } = req.body;
+
+      await User.findOneAndUpdate({ _id: userId }, { [`results.${appLang}.${learningLang}.langPoints`]: score });
+      res.status(201).json('Баллы засчитаны!');
     } catch (e) {
       res.status(500).json({ message: 'Что-то пошло не так' });
     }
