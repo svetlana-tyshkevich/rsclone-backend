@@ -12,10 +12,13 @@ router.get('/rating', async (req, res) => {
     res.send({
       rating: rating
         .sort(
-          (a, b) => b.results.english.langPoints - a.results.english.langPoints,
+          (a, b) =>
+            b.results.russianApp.english.langPoints -
+            a.results.russianApp.english.langPoints,
         )
         .slice(0, 5)
-        .filter((item) => item.results.english.langPoints > 0),
+        .filter((item) => item.results.russianApp.english.langPoints > 0)
+        .map((item) => [item.email, item.results.russianApp.english.langPoints]),
     });
   } catch (e) {
     res
@@ -25,11 +28,12 @@ router.get('/rating', async (req, res) => {
 });
 
 // weekProgress
-router.get('/weekProgress', async (req, res) => {
+router.post('/weekProgress', async (req, res) => {
   try {
     const { userId, appLang, learningLang } = req.body;
     const currentUser = await User.find({ _id: userId });
-    const weekProgress = currentUser[0].results[appLang][learningLang].weekProgress
+    const weekProgress =
+      currentUser[0].results[appLang][learningLang].weekProgress;
     res.send({ weekProgress });
   } catch (e) {
     res
