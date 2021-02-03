@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const config = require('config');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -7,6 +8,8 @@ require('./passport');
 const app = express();
 
 app.use(express.json({ extended: true}));
+
+app.use(cors());
 
 app.use(passport.initialize());
 app.use(passport.session());
