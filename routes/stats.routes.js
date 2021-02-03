@@ -5,20 +5,20 @@ const User = require('../models/User');
 const router = Router();
 
 // rating
-router.get('/rating', async (req, res) => {
+router.post('/rating', async (req, res) => {
   try {
+    const {  appLang, learningLang } = req.body;
     const rating = await User.find();
-
     res.send({
       rating: rating
         .sort(
           (a, b) =>
-            b.results.russianApp.english.langPoints -
-            a.results.russianApp.english.langPoints,
+            b.results[appLang][learningLang].langPoints -
+            a.results[appLang][learningLang].langPoints,
         )
         .slice(0, 5)
-        .filter((item) => item.results.russianApp.english.langPoints > 0)
-        .map((item) => [item.email, item.results.russianApp.english.langPoints]),
+        .filter((item) => item.results[appLang][learningLang].langPoints > 0)
+        .map((item) => [item.email, item[appLang][learningLang].langPoints]),
     });
   } catch (e) {
     res
