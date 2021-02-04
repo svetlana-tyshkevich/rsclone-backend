@@ -51,15 +51,15 @@ router.put(
 
   async (req, res) => {
     try {
-      const { userId, appLang, learnLang, level, lesson, score } = req.body;
+      const { userId, appLang, learningLang, level, lesson, score } = req.body;
 
-      await User.findOneAndUpdate({ _id: userId }, { [`results.${appLang}.${learnLang}.${level}.${lesson}`]: score });
-      // let totalScore = 0;
-      // for (let i = 1; i <= levelsNumber; i += 1) {
-      // for (let j = 1; j <= lessonsNumber; j += 1)
-      // totalScore += stats[appLang][learnLang][`level${i}`][`lesson${j}`];
-      // }
+      
+    const currentUser = await User.find({ _id: userId });
 
+    const lessonUpdate = `results.${appLang}.${learningLang}.${level}.${lesson}`;
+
+      await User.findOneAndUpdate({ _id: userId }, { [lessonUpdate]: score });
+     
       res.status(201).json('Задание принято');
     } catch (e) {
       res.status(500).json({ message: 'Что-то пошло не так' });
